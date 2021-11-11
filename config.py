@@ -1,0 +1,1 @@
+LOGPATH = './logs/lib.dll'
