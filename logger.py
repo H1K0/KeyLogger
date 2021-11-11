@@ -1,6 +1,10 @@
 from threading import Thread
 from time import time
+from datetime import datetime as dt
+from tzlocal import get_localzone
 from config import LOGPATH
+
+utc_offset = dt.now(get_localzone()).utcoffset().total_seconds()
 
 
 def encode(plain):
@@ -18,8 +22,9 @@ def encode(plain):
 
 class LogThread(Thread):
     def __init__(self, data):
+        global utc_offset
         Thread.__init__(self)
-        self.data = list(data) + [int(time() * 1000)]
+        self.data = list(data) + [int((time() + utc_offset) * 1000)]
 
     def run(self):
         cipher = list(map(lambda n: n * 228 - 54, self.data))
