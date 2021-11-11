@@ -4,7 +4,6 @@
 
 - Python 3.7+
 - `pynput` lib
-- `threading` lib
 - `tzlocal` lib
 
 ## Usage
